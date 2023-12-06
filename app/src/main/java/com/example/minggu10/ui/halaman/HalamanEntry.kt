@@ -23,12 +23,19 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.minggu10.R
+import com.example.minggu10.data.Siswa
 import com.example.minggu10.model.DetailSiswa
 import com.example.minggu10.model.EntryViewModel
 import com.example.minggu10.model.PenyediaViewModel
 import com.example.minggu10.model.UIStateSiswa
 import com.example.minggu10.navigasi.DestinasiNavigasi
+import com.example.minggu10.navigasi.SiswaTopAppBar
 import kotlinx.coroutines.launch
+
+object DestinasiEntry: DestinasiNavigasi {
+    override val route = "item_entry"
+    override val titleRes = R.string.entry_siswa
+}
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -40,7 +47,14 @@ fun EntrySiswaScreen(
     val coroutineScope = rememberCoroutineScope()
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
     Scaffold(
-        modifier = modifier.nestedScroll(scrollBehavior.nestedScrollConnection)
+        modifier = modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
+        topBar = {
+            SiswaTopAppBar(
+                title = stringResource(DestinasiEntry.titleRes),
+                canNavigateBack = true,
+                scrollBehavior = scrollBehavior
+            )
+        }
     )
     { innerPadding ->
         EntrySiswaBody(
