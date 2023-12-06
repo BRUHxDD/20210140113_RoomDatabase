@@ -24,9 +24,10 @@ import com.example.minggu10.ui.halaman.EntrySiswaScreen
 import com.example.minggu10.ui.halaman.HomeScreen
 
 @Composable
-fun SiswaApp(navController: NavHostController = rememberNavController()){
+fun SiswaApp(navController: NavHostController = rememberNavController()) {
     HostNavigasi(navController = navController)
 }
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SiswaTopAppBar(
@@ -58,20 +59,22 @@ fun SiswaTopAppBar(
 fun HostNavigasi(
     navController: NavHostController,
     modifier: Modifier = Modifier
-){
+) {
     NavHost(
-        navController=navController,
+        navController = navController,
         startDestination = DestinasiHome.route,
-        modifier = Modifier)
+        modifier = Modifier
+    )
     {
-        composable(DestinasiHome.route){
+        composable(DestinasiHome.route) {
             HomeScreen(
                 navigateToItemEntry = {
-                    navController.navigate(DestinasiEntry.route)},
+                    navController.navigate(DestinasiEntry.route)
+                },
             )
         }
-        composable(DestinasiEntry.route){
-            EntrySiswaScreen(navigateBack = {navController.popBackStack()})
+        composable(DestinasiEntry.route) {
+            EntrySiswaScreen(navigateBack = { navController.popBackStack() })
         }
     }
 }
